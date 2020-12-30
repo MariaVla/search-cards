@@ -1,5 +1,7 @@
 # Search Cards
 
+Generic React app to search cards. The info has to be feed in a certain way [INSERT HOW WE CONSUME THE API]
+
 ## Tech
 
 - React

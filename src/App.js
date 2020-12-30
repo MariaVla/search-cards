@@ -1,15 +1,27 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { robots } from './robots';
 import CardList from './CardList';
+import SearchBox from './SearchBox';
 
 function App() {
-  console.log(robots);
-  return (
-    <div className='App'>
-      <h1>Search Cards</h1>
+  const [cards, setCards] = useState(robots);
+  const [searchField, setSearchField] = useState('');
+  console.log(cards);
+  console.log('searchField', searchField);
 
-      <CardList cards={robots} />
+  useEffect(() => {
+    const filteredCards = cards.filter((card) => {
+      return card.name.toLowerCase().includes(searchField.toLowerCase());
+    });
+    setCards(filteredCards);
+  }, [searchField]);
+
+  return (
+    <div className='tc'>
+      <h1>Search Cards</h1>
+      <SearchBox onSearchChange={setSearchField} />
+      <CardList cards={cards} />
     </div>
   );
 }
