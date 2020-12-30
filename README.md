@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Search Cards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech
+
+- React
+- Tachyons for css styles
 
 ## Available Scripts
 
