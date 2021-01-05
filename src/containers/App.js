@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { robots } from './robots';
-import CardList from './CardList';
-import SearchBox from './SearchBox';
-import Scroll from './Scroll';
+import { robots } from '../robots';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -29,19 +29,17 @@ function App() {
     return card.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
-  if (cards.length === 0) {
-    return <h3>Loading...</h3>;
-  } else {
-    return (
-      <div className='tc'>
-        <h1 className='f1'>Search Cards</h1>
-        <SearchBox onSearchChange={setSearchField} />
-        <Scroll>
-          <CardList cards={filteredCards} />
-        </Scroll>
-      </div>
-    );
-  }
+  return !cards.length ? (
+    <h3>Loading...</h3>
+  ) : (
+    <div className='tc'>
+      <h1 className='f1'>Search Cards</h1>
+      <SearchBox onSearchChange={setSearchField} />
+      <Scroll>
+        <CardList cards={filteredCards} />
+      </Scroll>
+    </div>
+  );
 }
 
 export default App;
