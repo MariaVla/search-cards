@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { robots } from './robots';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
 
 function App() {
-  const [cards, setCards] = useState(robots);
+  const [cards, setCards] = useState([]);
   const [searchField, setSearchField] = useState('');
 
   // useCallback will return a memoized version of the callback that only
@@ -18,7 +18,13 @@ function App() {
   //   [JSON.stringify(cards), searchField]
   // );
 
-  const filteredCards = cards.filter((card) => {
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((resp) => resp.json())
+      .then((users) => setCards(users));
+  }, []);
+
+  const filteredCards = cards?.filter((card) => {
     return card.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
