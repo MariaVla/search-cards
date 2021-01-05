@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import './App.css';
 import { robots } from './robots';
 import CardList from './CardList';
@@ -7,21 +7,22 @@ import SearchBox from './SearchBox';
 function App() {
   const [cards, setCards] = useState(robots);
   const [searchField, setSearchField] = useState('');
-  console.log(cards);
-  console.log('searchField', searchField);
 
-  useEffect(() => {
-    const filteredCards = cards.filter((card) => {
-      return card.name.toLowerCase().includes(searchField.toLowerCase());
-    });
-    setCards(filteredCards);
-  }, [searchField]);
+  // useCallback will return a memoized version of the callback that only
+  // changes if one of the dependencies has changed.
+  const filteredCards = useCallback(
+    () =>
+      cards.filter((card) => {
+        return card.name.toLowerCase().includes(searchField.toLowerCase());
+      }),
+    [JSON.stringify(cards), searchField]
+  );
 
   return (
     <div className='tc'>
       <h1>Search Cards</h1>
       <SearchBox onSearchChange={setSearchField} />
-      <CardList cards={cards} />
+      <CardList cards={filteredCards()} />
     </div>
   );
 }
