@@ -7,6 +7,12 @@ Generic React app to search cards. The info has to be feed like https://jsonplac
 - React
 - Tachyons for css styles
 
+## Dev
+
+- Clone this repo
+- `$ yarn install`
+- `$ yarn start`
+
 ## Available Scripts
 
 In the project directory, you can run:
