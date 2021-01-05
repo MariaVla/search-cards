@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { robots } from './robots';
 import CardList from './CardList';
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className='tc'>
-      <h1>Search Cards</h1>
+      <h1 className='f1'>Search Cards</h1>
       <SearchBox onSearchChange={setSearchField} />
       <CardList cards={filteredCards} />
     </div>
