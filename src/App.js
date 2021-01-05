@@ -3,6 +3,7 @@ import './App.css';
 import { robots } from './robots';
 import CardList from './CardList';
 import SearchBox from './SearchBox';
+import Scroll from './Scroll';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -35,7 +36,9 @@ function App() {
       <div className='tc'>
         <h1 className='f1'>Search Cards</h1>
         <SearchBox onSearchChange={setSearchField} />
-        <CardList cards={filteredCards} />
+        <Scroll>
+          <CardList cards={filteredCards} />
+        </Scroll>
       </div>
     );
   }
