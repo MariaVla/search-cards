@@ -4,6 +4,7 @@ import { robots } from '../robots';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
+import ErrorBoundry from '../components/ErrorBoundry';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -36,7 +37,9 @@ function App() {
       <h1 className='f1'>Search Cards</h1>
       <SearchBox onSearchChange={setSearchField} />
       <Scroll>
-        <CardList cards={filteredCards} />
+        <ErrorBoundry>
+          <CardList cards={filteredCards} />
+        </ErrorBoundry>
       </Scroll>
     </div>
   );
