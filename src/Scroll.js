@@ -3,8 +3,8 @@ const Scroll = ({ children }) => {
     <div
       style={{
         overflowY: 'scroll',
-        border: '1px solid black',
-        height: '800px',
+        border: '1px solid white',
+        height: '600px',
       }}
     >
       {children}
