@@ -28,13 +28,17 @@ function App() {
     return card.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
-  return (
-    <div className='tc'>
-      <h1 className='f1'>Search Cards</h1>
-      <SearchBox onSearchChange={setSearchField} />
-      <CardList cards={filteredCards} />
-    </div>
-  );
+  if (cards.length === 0) {
+    return <h3>Loading...</h3>;
+  } else {
+    return (
+      <div className='tc'>
+        <h1 className='f1'>Search Cards</h1>
+        <SearchBox onSearchChange={setSearchField} />
+        <CardList cards={filteredCards} />
+      </div>
+    );
+  }
 }
 
 export default App;
