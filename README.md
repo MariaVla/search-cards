@@ -4,7 +4,7 @@ Generic React app to search cards. The info has to be feed like https://jsonplac
 
 ## Tech
 
-- React
+- React 17
 - Tachyons for css styles
 
 ## Dev
