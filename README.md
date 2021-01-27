@@ -1,6 +1,6 @@
 # Search Cards
 
-Generic React app to search cards. The info has to be feed like https://jsonplaceholder.typicode.com/users
+Generic React app to search cards. The info has to be in format like https://jsonplaceholder.typicode.com/users
 
 ## Tech
 
@@ -12,3 +12,9 @@ Generic React app to search cards. The info has to be feed like https://jsonplac
 - Clone this repo
 - `$ yarn install`
 - `$ yarn start`
+
+## Deploy to Github Pages
+
+- `$ yarn deploy`
+
+It's going to deploy the branch `main`.
