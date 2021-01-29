@@ -1,47 +1,58 @@
-import { useState, useEffect } from 'react';
-import './App.css';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
+import './App.css';
 
-function App() {
-  const [cards, setCards] = useState([]);
-  const [searchField, setSearchField] = useState('');
+import { setSearchField } from '../actions';
 
-  // useCallback will return a memoized version of the callback that only
-  // changes if one of the dependencies has changed.
-  // const filteredCards = useCallback(
-  //   () =>
-  //     cards.filter((card) => {
-  //       return card.name.toLowerCase().includes(searchField.toLowerCase());
-  //     }),
-  //   [JSON.stringify(cards), searchField]
-  // );
+// parameter state comes from index.js provider store state(rootReducers)
+// searchCards is the name of the reducer
+const mapStateToProps = (state) => {
+  return {
+    searchField: state.searchCards?.searchField,
+  };
+};
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((resp) => resp.json())
-      .then((users) => setCards(users));
-  }, []);
+// dispatch the DOM changes to call an action. note mapStateToProps returns object, mapDispatchToProps returns function
+// the function returns an object then uses connect to change the data from reducers.
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+  };
+};
 
-  const filteredCards = cards?.filter((card) => {
-    return card.name.toLowerCase().includes(searchField.toLowerCase());
-  });
+class App extends Component {
+  componentDidMount() {
+    // this.props.onRequestRobots();
+  }
 
-  return !cards.length ? (
-    <h3>Loading...</h3>
-  ) : (
-    <div className='tc'>
-      <h1 className='f1'>Search Cards</h1>
-      <SearchBox onSearchChange={setSearchField} />
-      <Scroll>
-        <ErrorBoundry>
-          <CardList cards={filteredCards} />
-        </ErrorBoundry>
-      </Scroll>
-    </div>
-  );
+  render() {
+    const { robots, searchField, onSearchChange, isPending } = this.props;
+
+    const filteredRobots = robots?.filter((robot) => {
+      return robot.name.toLowerCase().includes(searchField.toLowerCase());
+    });
+
+    return (
+      <div className='tc'>
+        <h1 className='f1'>Search Cards</h1>
+        <SearchBox searchChange={onSearchChange} />
+        <Scroll>
+          {isPending ? (
+            <h1>Loading</h1>
+          ) : (
+            <ErrorBoundry>
+              <CardList cards={filteredRobots} />
+            </ErrorBoundry>
+          )}
+        </Scroll>
+      </div>
+    );
+  }
 }
 
-export default App;
+// action done from mapDispatchToProps will change state from mapStateToProps
+export default connect(mapStateToProps, mapDispatchToProps)(App);
