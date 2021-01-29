@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import './index.css';
 import App from './containers/App';
 import { searchCards } from './reducers';
 import reportWebVitals from './reportWebVitals';
+import { createLogger } from 'redux-logger';
 import 'tachyons';
 
-const store = createStore(searchCards);
+const logger = createLogger();
+
+const store = createStore(searchCards, applyMiddleware(logger));
 
 ReactDOM.render(
   <React.StrictMode>
