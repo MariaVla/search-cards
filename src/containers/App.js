@@ -6,13 +6,15 @@ import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
 import './App.css';
 
-import { setSearchField } from '../actions';
+import { requestCards, setSearchField } from '../actions';
 
 // parameter state comes from index.js provider store state(rootReducers)
 // searchCards is the name of the reducer
 const mapStateToProps = (state) => {
   return {
     searchField: state.searchCards?.searchField,
+    cards: state.requestCards.cards,
+    isPending: state.requestCards.isPending,
   };
 };
 
@@ -21,18 +23,19 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestCards: () => dispatch(requestCards()),
   };
 };
 
 class App extends Component {
   componentDidMount() {
-    // this.props.onRequestRobots();
+    this.props.onRequestCards();
   }
 
   render() {
-    const { robots, searchField, onSearchChange, isPending } = this.props;
+    const { cards, searchField, onSearchChange, isPending } = this.props;
 
-    const filteredRobots = robots?.filter((robot) => {
+    const filteredCards = cards?.filter((robot) => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
@@ -45,7 +48,7 @@ class App extends Component {
             <h1>Loading</h1>
           ) : (
             <ErrorBoundry>
-              <CardList cards={filteredRobots} />
+              <CardList cards={filteredCards} />
             </ErrorBoundry>
           )}
         </Scroll>

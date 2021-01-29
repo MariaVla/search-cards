@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './containers/App';
-import { searchCards } from './reducers';
+import { requestCards, searchCards } from './reducers';
 import reportWebVitals from './reportWebVitals';
 import { createLogger } from 'redux-logger';
 import 'tachyons';
 
 const logger = createLogger();
 
-const store = createStore(searchCards, applyMiddleware(logger));
+// If we have more that one reducer we have to combined them
+const rootReducers = combineReducers({ requestCards, searchCards });
+
+const store = createStore(
+  rootReducers,
+  applyMiddleware(thunkMiddleware, logger)
+);
 
 ReactDOM.render(
   <React.StrictMode>
