@@ -2,6 +2,8 @@
 
 Generic React app to search cards. The info has to be in format like https://jsonplaceholder.typicode.com/users
 
+Live on: https://mariavla.github.io/search-cards/
+
 ## Tech
 
 - React 17
