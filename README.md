@@ -8,6 +8,7 @@ Live on: https://mariavla.github.io/search-cards/
 
 - React 17
 - Tachyons for css styles
+- Node 14.5.0
 
 ## Dev
 
