@@ -1,4 +1,8 @@
-const SearchBox = ({ onSearchChange }) => {
+type SearchBoxTypes = {
+  onSearchChange: (value: string) => void;
+};
+
+const SearchBox = ({ onSearchChange }: SearchBoxTypes) => {
   return (
     <div className='pa2'>
       <input

@@ -1,4 +1,7 @@
-const Scroll = ({ children }) => {
+type Props = {
+  children?: JSX.Element;
+};
+const Scroll = ({ children }: Props) => {
   return (
     <div
       style={{
