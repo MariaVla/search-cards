@@ -7,7 +7,7 @@ import ErrorBoundry from '../components/ErrorBoundry';
 
 export interface CardsTypes {
   name: string;
-  id: string;
+  id: number;
   email: string;
 }
 
