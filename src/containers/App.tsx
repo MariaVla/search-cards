@@ -7,7 +7,7 @@ import ErrorBoundry from '../components/ErrorBoundry';
 
 export interface CardsTypes {
   name: string;
-  id: number;
+  id: string;
   email: string;
 }
 
@@ -38,9 +38,7 @@ function App() {
   }, []);
 
   const filteredCards = cards.filter((card) => {
-    return searchField
-      ? card.name.toLowerCase().includes(searchField.toLowerCase())
-      : '';
+    return card.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
   return cards && !cards.length ? (

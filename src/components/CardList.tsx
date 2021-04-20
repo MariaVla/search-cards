@@ -2,7 +2,7 @@ import Card from './Card';
 
 type CardsTypes = {
   name: string;
-  id: number;
+  id: string;
   email: string;
 };
 

@@ -1,7 +1,7 @@
 type CardStatelessProps = {
   name: string;
   email: string;
-  id: number;
+  id: string;
 };
 
 const Card = ({ name, email, id }: CardStatelessProps) => {
