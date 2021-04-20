@@ -1,4 +1,3 @@
-// This means that what comes as props have to be a JSX element.
 type Props = {
   children?: JSX.Element;
 };

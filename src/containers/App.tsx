@@ -11,25 +11,9 @@ export interface CardsTypes {
   email: string;
 }
 
-// type CardsTypes = {
-//   name: string;
-//   id: number;
-//   email: string;
-// };
-
 function App() {
   const [cards, setCards] = useState<Array<CardsTypes>>([]);
   const [searchField, setSearchField] = useState<string>('');
-
-  // useCallback will return a memoized version of the callback that only
-  // changes if one of the dependencies has changed.
-  // const filteredCards = useCallback(
-  //   () =>
-  //     cards.filter((card) => {
-  //       return card.name.toLowerCase().includes(searchField.toLowerCase());
-  //     }),
-  //   [JSON.stringify(cards), searchField]
-  // );
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
