@@ -1,6 +1,12 @@
 import Card from './Card';
 
-const CardList = ({ cards }) => {
+type CardsTypes = {
+  name: string;
+  id: number;
+  email: string;
+};
+
+const CardList = ({ cards }: { cards: Array<CardsTypes> }) => {
   return (
     <div>
       {cards?.map((card) => {

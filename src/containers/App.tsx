@@ -5,9 +5,21 @@ import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
 
+export interface CardsTypes {
+  name: string;
+  id: number;
+  email: string;
+}
+
+// type CardsTypes = {
+//   name: string;
+//   id: number;
+//   email: string;
+// };
+
 function App() {
-  const [cards, setCards] = useState([]);
-  const [searchField, setSearchField] = useState('');
+  const [cards, setCards] = useState<Array<CardsTypes>>([]);
+  const [searchField, setSearchField] = useState<string>('');
 
   // useCallback will return a memoized version of the callback that only
   // changes if one of the dependencies has changed.
@@ -25,11 +37,11 @@ function App() {
       .then((users) => setCards(users));
   }, []);
 
-  const filteredCards = cards?.filter((card) => {
+  const filteredCards = cards.filter((card) => {
     return card.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
-  return !cards.length ? (
+  return cards && !cards.length ? (
     <h3>Loading...</h3>
   ) : (
     <div className='tc'>
