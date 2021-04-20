@@ -18,8 +18,8 @@ export interface CardsTypes {
 // };
 
 function App() {
-  const [cards, setCards] = useState<Array<CardsTypes> | null>([]);
-  const [searchField, setSearchField] = useState<string | null>('');
+  const [cards, setCards] = useState<Array<CardsTypes>>([]);
+  const [searchField, setSearchField] = useState<string>('');
 
   // useCallback will return a memoized version of the callback that only
   // changes if one of the dependencies has changed.
@@ -37,7 +37,7 @@ function App() {
       .then((users) => setCards(users));
   }, []);
 
-  const filteredCards = cards?.filter((card) => {
+  const filteredCards = cards.filter((card) => {
     return searchField
       ? card.name.toLowerCase().includes(searchField.toLowerCase())
       : '';
